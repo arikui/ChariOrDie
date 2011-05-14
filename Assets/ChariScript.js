@@ -1,22 +1,27 @@
+#pragma strict
+
 var other : GUIScript;
-var start_position : Vector3 ;
+var startPosition : Vector3 ;
 var friction = 0;
 
-function Start () {
-    // Find the OtherScript which is attached to any game object in the scene.
-    other = FindObjectOfType(GUIScript);
-	start_position = transform.position;
-}
-function Update() {
+private var myTransform : Transform;
 
-    transform.Rotate(0, other.speed, 0);
-    transform.Translate(other.speed, 0, 0);
+function Start () {
+	myTransform = transform;
+    // Find the OtherScript which is attached to any game object in the scene.
+    other = FindObjectOfType(GUIScript) as GUIScript;
+	startPosition = transform.position;
+}
+
+function Update() {
+    myTransform.Rotate(0, other.speed, 0);
+    myTransform.Translate(other.speed, 0, 0);
 	
 }
 
 function Restart() {
-	transform.position = start_position;
-	transform.rotation = Quaternion(0,0,0,0);
+	myTransform.position = startPosition;
+	myTransform.rotation = Quaternion(0, 0, 0, 0);
 }
 
 function OnCollisionStay(collisionInfo : Collision) {
@@ -30,5 +35,4 @@ function OnCollisionStay(collisionInfo : Collision) {
 }
 
 function OnCollisionEnter(collisionInfo:Collision){
-	
 }

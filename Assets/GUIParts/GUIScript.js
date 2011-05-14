@@ -1,6 +1,5 @@
-var camera1 : GameObject;
-var camera2 : GameObject;
-var camera3 : GameObject;
+#pragma strict
+
 var chari : GameObject ;
 var speed : float = 0.8;
 
@@ -16,7 +15,7 @@ private var toolbarStrings : String[] = [
 ];
 
 function Start() {
-	chariScript = chari.GetComponent(ChariScript);
+	chariScript = chari.GetComponent(ChariScript) as ChariScript;
 }
 
 private function showReset(){

@@ -1,4 +1,6 @@
 var updateInterval = 0.5;
+
+private var region : Rect = Rect(Screen.width - 50, 0, 100, 20);
 private var lastInterval : double; // Last interval end time
 private var frames = 0; // Frames over current interval
 private var fps : float; // Current FPS
@@ -9,7 +11,9 @@ function Start(){
 }
 
 function OnGUI() {
+	GUILayout.BeginArea(region);
 	GUILayout.Label("" + fps.ToString("f2"));
+	GUILayout.EndArea();
 }
 
 function Update(){
