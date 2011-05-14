@@ -18,7 +18,6 @@ function OnGUI(){
 		light2.intensity = 1;
 	}
 
-	// Make the second button.
 	if ( GUILayout.Button(buttonNames[1]) ) {
 		light1.intensity = 0;
 		light2.intensity = 0;

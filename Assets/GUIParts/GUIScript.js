@@ -1,7 +1,6 @@
 #pragma strict
 
 var chari : GameObject ;
-var speed : float = 0.8;
 
 private var chariScript : ChariScript;
 

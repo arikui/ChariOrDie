@@ -6,13 +6,11 @@ var camera3 : GameObject;
 var region : Rect = Rect(10, 10, 100, 120);
 var buttonNames : String[] = ["1", "2", "3"];
 
-private var ownerScript : GUIScript;
 private var audioListener1 : AudioListener;
 private var audioListener2 : AudioListener;
 private var audioListener3 : AudioListener;
 
 function Start() {
-	ownerScript = GetComponent(GUIScript) as GUIScript;
 	audioListener1 = camera1.GetComponent(AudioListener) as AudioListener;
 	audioListener2 = camera2.GetComponent(AudioListener) as AudioListener;
 	audioListener3 = camera3.GetComponent(AudioListener) as AudioListener;
@@ -31,7 +29,6 @@ function OnGUI(){
 		audioListener3.enabled = false;
 	}
 
-	// Make the second button.
 	if ( GUILayout.Button(buttonNames[1]) ) {
 		camera1.camera.enabled = false;
 		audioListener1.enabled = false;

@@ -3,6 +3,7 @@
 var other : GUIScript;
 var startPosition : Vector3 ;
 var friction = 0;
+var speed : double = 0.8;
 
 private var myTransform : Transform;
 
@@ -14,8 +15,8 @@ function Start () {
 }
 
 function Update() {
-    myTransform.Rotate(0, other.speed, 0);
-    myTransform.Translate(other.speed, 0, 0);
+    myTransform.Rotate(0, speed, 0);
+    myTransform.Translate(speed, 0, 0);
 	
 }
 
