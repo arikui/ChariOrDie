@@ -5,6 +5,7 @@ var buttonNames : String[] = ["slow", "high", "kamikaze"];
 
 private var ownerScript : GUIScript;
 private var chariScript : ChariScript;
+private var sliderRect : Rect = Rect(0, 25, 100, 30);
 
 function Start(){
 	ownerScript = GetComponent(GUIScript) as GUIScript;
@@ -14,19 +15,6 @@ function Start(){
 function OnGUI(){
 	GUILayout.BeginArea(region);
 	GUILayout.Label("Speed");
-	
-	if ( GUILayout.Button(buttonNames[0]) ) {
-		chariScript.speed = 0.3;
-	}
-
-	if ( GUILayout.Button(buttonNames[1]) ) {
-		chariScript.speed = 0.8;
-	}
-	
-	if ( GUILayout.Button(buttonNames[2]) ) {
-		chariScript.speed = 2;
-	}
-	
+	chariScript.speed = GUI.HorizontalSlider(sliderRect, chariScript.speed, 0.0, 3.0);
 	GUILayout.EndArea();
-	//print(chari.speed);
 }

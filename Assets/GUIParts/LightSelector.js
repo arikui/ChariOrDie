@@ -4,6 +4,7 @@ var light1 : Light;
 var light2 : Light;
 var region : Rect = Rect(120, 10, 100, 120);
 var buttonNames : String[] = ["on", "off", "flicker"];
+var selected : int = 0;
 
 private var on : boolean = true;
 private var flickering : boolean = false;
@@ -11,24 +12,26 @@ private var flickering : boolean = false;
 function OnGUI(){
 	GUILayout.BeginArea(region);
 	GUILayout.Label("Light");
+	selected = GUILayout.SelectionGrid(selected, buttonNames, 1);
+	GUILayout.EndArea();
 	
-	if ( GUILayout.Button(buttonNames[0]) ) {
+	switch( selected ){
+	case 0:
 		flickering = false;
 		light1.intensity = 8;
 		light2.intensity = 1;
-	}
+		break;
 
-	if ( GUILayout.Button(buttonNames[1]) ) {
+	case 1:
 		light1.intensity = 0;
 		light2.intensity = 0;
 		flickering = false;
-	}
-	
-	if ( GUILayout.Button(buttonNames[2]) ) {
+		break;
+
+	case 2:
 		flickering = true;
+		break;
 	}
-	
-	GUILayout.EndArea();
 }
 
 function Update(){

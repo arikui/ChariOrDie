@@ -5,6 +5,7 @@ var camera2 : GameObject;
 var camera3 : GameObject;
 var region : Rect = Rect(10, 10, 100, 120);
 var buttonNames : String[] = ["1", "2", "3"];
+var selected : int = 0;
 
 private var audioListener1 : AudioListener;
 private var audioListener2 : AudioListener;
@@ -19,33 +20,35 @@ function Start() {
 function OnGUI(){
 	GUILayout.BeginArea(region);
 	GUILayout.Label("Camera");
+	selected = GUILayout.SelectionGrid(selected, buttonNames, 1);
+	GUILayout.EndArea();
 	
-	if ( GUILayout.Button(buttonNames[0]) ) {
+	switch( selected ){
+	case 0:
 		camera1.camera.enabled = true;
 		audioListener1.enabled = true;
 		camera2.camera.enabled = false;
 		audioListener2.enabled = false;
 		camera3.camera.enabled = false;
 		audioListener3.enabled = false;
-	}
-
-	if ( GUILayout.Button(buttonNames[1]) ) {
+		break;
+		
+	case 1:
 		camera1.camera.enabled = false;
 		audioListener1.enabled = false;
         camera2.camera.enabled = true;
 		audioListener2.enabled = true;
 		camera3.camera.enabled = false;
 		audioListener3.enabled = false;
-	}
+		break;
 	
-	if ( GUILayout.Button(buttonNames[2]) ) {
+	case 2:
 		camera1.camera.enabled = false;
 		audioListener1.enabled = false;
         camera2.camera.enabled = false;
 		audioListener2.enabled = false;
 		camera3.camera.enabled = true;
 		audioListener3.enabled = true;
+		break;
 	}
-	
-	GUILayout.EndArea();
 }
