@@ -2,20 +2,29 @@
 
 var light1 : Light;
 var light2 : Light;
-var region : Rect = Rect(120, 10, 100, 120);
 var buttonNames : String[] = ["on", "off", "flicker"];
 var selected : int = 0;
+var showed : boolean = false;
 
+private var region : Rect;
 private var on : boolean = true;
 private var flickering : boolean = false;
 
+function Start(){
+	var ownerScript : GUIScript = GetComponent(GUIScript) as GUIScript;
+	region = ownerScript.panelRegion;
+}
+
 function OnGUI(){
+	if( !showed ) return;
+	
 	GUILayout.BeginArea(region);
-	GUILayout.Label("Light");
 	selected = GUILayout.SelectionGrid(selected, buttonNames, 1);
 	GUILayout.EndArea();
 	
-	switch( selected ){
+	if( !GUI.changed ) return;
+
+switch( selected ){
 	case 0:
 		flickering = false;
 		light1.intensity = 8;
